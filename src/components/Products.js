@@ -11,6 +11,7 @@ import product from '../images/product.png';
 const Products = ({...props}) => {
 	const { allData } = props
 	const [tabdata, settabdata] = useState(allData);
+	const [selectedtab, setselectedtab] = useState('mug')
 	const [card, setcard] = useState([]);
 	const [quantity, setquantity] = useState(0);
 	
@@ -18,6 +19,7 @@ const Products = ({...props}) => {
 
 		const onSelectTab = (tab) => {
 			settabdata(allData?.filter((item) => item.itemType === tab))
+			setselectedtab(tab)
 		}
 
 		const onAddtoBasket = (product) => {
@@ -32,8 +34,8 @@ const Products = ({...props}) => {
       <div className="products">
 				<div className='products__title'>Products</div>
 				<div className="products__tab">
-					<Button className='active' onClick={()=>onSelectTab('mug')}>mug</Button>
-					<Button onClick={()=>onSelectTab('shirt')}>shirt</Button>
+					<Button className={selectedtab === 'mug' ? 'active' : ''} onClick={()=>onSelectTab('mug')}>mug</Button>
+					<Button className={selectedtab !== 'mug' ? 'active' : ''} onClick={()=>onSelectTab('shirt')}>shirt</Button>
 				</div>
 				<Row className='products__list'>
 					{tabdata?.map((item, index) => 

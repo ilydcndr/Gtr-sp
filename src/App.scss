@@ -110,15 +110,15 @@
         background-color: #1EA4CE;
         color: white;
   
-        &:hover {
-          background-color: #1EA4CE;
-          color: white;
+        &:hover, &:active {
+          background-color: #1EA4CE !important;
+          color: white !important;
         }
       }
   
-      &:hover {
-        background-color: #F2F0FD;
-        color: #1EA4CE;
+      &:hover, &:active {
+        background-color: #F2F0FD !important;
+        color: #1EA4CE !important;
       }
     }
   }
