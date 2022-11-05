@@ -2,34 +2,38 @@ import React from 'react';
 
 const Filters = () => {
 
+	const sortData = (e) => {
+
+	}
+
   return ( 
 		<>
 			<div className="sorting filter">
 				<p className="filter__title">Sorting</p>
 				<div className="filter__content">
 					<div>
-						<input className="filter__item" type="radio"/>
+						<input className="filter__item" type="radio" name='lowFirst' onClick={()=>sortData('lowFirst')}/>
 						<label>
 								Price low to heigh
 						</label>
 					</div>
 
 					<div>
-						<input className="filter__item" type="radio"/>
+						<input className="filter__item" type="radio" name='highFirst'/>
 							<label>
 									Price hight to low
 							</label>
 					</div>
 					
 					<div>
-						<input className="filter__item" type="radio"/>
+						<input className="filter__item" type="radio" name='newFirst'/>
 							<label>
 								New to old
 						</label>
 					</div>
 
 					<div>
-						<input className="filter__item" type="radio"/>
+						<input className="filter__item" type="radio" name='oldFirst'/>
 							<label>
 									Old to new
 							</label>

@@ -1,0 +1,7 @@
+export const INCREASE_COUNTER="INCREASE_COUNTER"
+export const DECREASE_COUNTER="DECREASE_COUNTER"
+
+export const SORT_BY_MIN="SORT_BY_MIN"
+export const SORT_BY_MAX="SORT_BY_MAX"
+export const SORT_BY_NEW="SORT_BY_NEW"
+export const SORT_BY_OLD="SORT_BY_OLD"

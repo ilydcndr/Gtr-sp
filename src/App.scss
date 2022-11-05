@@ -53,6 +53,7 @@
      padding: 8px 10px;
      color: #1EA4CE;
      font-size: 20px;
+     cursor: pointer;
    }
 
    &-total {
@@ -127,6 +128,12 @@
     padding: 15px;
 
     &-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: auto;
+      margin-bottom: 20px;
+
       button {
         width: 100%;
         height: 22px;
