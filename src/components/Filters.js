@@ -23,14 +23,14 @@ const Filters = ({...props}) => {
 					</div>
 					
 					<div>
-						<input className="filter__item" type="radio" name='sortOption'/>
+						<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byNew')}/>
 							<label>
 								New to old
 						</label>
 					</div>
 
 					<div>
-						<input className="filter__item" type="radio" name='sortOption'/>
+						<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byOld')}/>
 							<label>
 									Old to new
 							</label>

@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { connect } from "react-redux";
 import { decreaseCounter } from "../redux/actions/cartActions";*/
 
-const Cart = ({cart, onAddToCart, onRemoveFromCart}) => {
-
+const Cart = ({cart, onAddToCart, onRemoveFromCart, total}) => {
+	
   return ( 
 		<div className= { cart.length > 0 ? 'cart': 'hidden'}>
 			{cart.map((item, index) =>
@@ -22,7 +22,7 @@ const Cart = ({cart, onAddToCart, onRemoveFromCart}) => {
 			</div>
 			)}
 			<div className='cart__total'>
-       65tl
+       {total}
 			</div>
 		</div>
   );

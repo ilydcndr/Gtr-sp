@@ -2,7 +2,7 @@ import React from "react";
 import logo from '../images/logo.png';
 import LogoBasket from '../images/logoBasket.png';
 
-const Header = () => {
+const Header = ({total}) => {
 
     return (
       <div className="header">
@@ -17,7 +17,8 @@ const Header = () => {
 						/>
           </a>
           <div className="summary">
-						<p><img alt="basket" src={LogoBasket}/> ₺ Özet</p>
+						{console.log(total,"total")}
+						<p><img alt="basket" src={LogoBasket}/>  {total !== null ? `₺ ${total}` : ''}</p>
 					</div>
       </div>
     );

@@ -13,27 +13,8 @@ import {
 
 const App = () => {
   const [data, setData] = useState(null);
-  const [openCart, setopenCart] = useState(false);
   const [cart, setCart] = useState([]);
-
-  const setCartVisibilty = (item) => {
-    if(item === 'true'){
-      setopenCart(false)
-    } else {
-      setopenCart(true);
-    }
-  }
-
-  const sortData = (param) => {
-    const updatedData = [...data]
-    if( param === 'byMin' ) {
-      updatedData.sort((a, b) => a.price - b.price);
-    } 
-    if( param === 'byMax' ) {
-     updatedData.sort((a, b) => b.price - a.price);
-    }
-    setData(updatedData);
-  }
+  const [total, setTotal] = useState(null);
 
   useEffect(() => {
 
@@ -46,6 +27,32 @@ const App = () => {
     });
 }, [])
 
+
+  const totalPrice = () => {
+    let total = 0;
+    cart.forEach(item => {
+      let quantity = item.quantity;
+      let perPrice = item.price;
+      setTotal(total += quantity * perPrice);
+    });
+  };
+
+  const sortData = (param) => {
+    const updatedData = [...data]
+    if( param === 'byMin' ) {
+      updatedData.sort((a, b) => a.price - b.price);
+    } 
+    if( param === 'byMax' ) {
+      updatedData.sort((a, b) => b.price - a.price);
+    }
+    if( param === 'byNew' ) {
+      updatedData.sort((a, b) => new Date(a.added) - new Date(b.added));
+    } else {
+      updatedData.sort((a, b) => new Date(b.added) - new Date(a.added));
+    }
+    setData(updatedData);
+  }
+
   const onAddToCart = (product) => {
     const updatedCart= [...cart]
     const cartItem = cart.find((item) => item.slug === product.slug)
@@ -56,7 +63,9 @@ const App = () => {
       } else {
         setCart([...cart, {...product, quantity:1}])
       }
+      totalPrice();
   }
+
 
   const onRemoveFromCart = (product) => {
     let updatedCart= [...cart]
@@ -67,11 +76,12 @@ const App = () => {
       updatedCart = cart.filter((item) => product.slug !== item.slug)
     } 
     setCart(updatedCart);
+    totalPrice();
   }
 
   return (
     <div className="App">
-      <Header openCart = {openCart} setCartVisibilty = {setCartVisibilty}/>
+      <Header total = {total}/>
       <Row className="content">
         <Col xl={3}>
           <Filters sortData = {sortData}/>
@@ -80,7 +90,7 @@ const App = () => {
           <Products data = {data} onAddToCart = {onAddToCart}/>
         </Col>
         <Col xl={3}>
-          <Cart openCart = {openCart} cart = {cart} onAddToCart = {onAddToCart} onRemoveFromCart = {onRemoveFromCart}/>
+          <Cart cart = {cart} onAddToCart = {onAddToCart} onRemoveFromCart = {onRemoveFromCart} total = {total}/>
         </Col>
       </Row>
     </div>
