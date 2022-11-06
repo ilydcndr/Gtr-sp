@@ -3,6 +3,7 @@ import logo from '../images/logo.png';
 import LogoBasket from '../images/logoBasket.png';
 
 const Header = () => {
+
     return (
       <div className="header">
         	<a href="/" className="navi__brand">
@@ -17,7 +18,7 @@ const Header = () => {
           </a>
           <div className="summary">
 						<p><img alt="basket" src={LogoBasket}/> ₺ Özet</p>
-				</div>
+					</div>
       </div>
     );
 }

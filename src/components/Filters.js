@@ -1,10 +1,7 @@
 import React from 'react';
 
-const Filters = () => {
-
-	const sortData = (e) => {
-
-	}
+const Filters = ({...props}) => {
+	const { sortData } = props
 
   return ( 
 		<>
@@ -12,28 +9,28 @@ const Filters = () => {
 				<p className="filter__title">Sorting</p>
 				<div className="filter__content">
 					<div>
-						<input className="filter__item" type="radio" name='lowFirst' onClick={()=>sortData('lowFirst')}/>
+						<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byMin')}/>
 						<label>
-								Price low to heigh
+								Price low to high
 						</label>
 					</div>
 
 					<div>
-						<input className="filter__item" type="radio" name='highFirst'/>
+						<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byMax')}/>
 							<label>
-									Price hight to low
+									Price high to low
 							</label>
 					</div>
 					
 					<div>
-						<input className="filter__item" type="radio" name='newFirst'/>
+						<input className="filter__item" type="radio" name='sortOption'/>
 							<label>
 								New to old
 						</label>
 					</div>
 
 					<div>
-						<input className="filter__item" type="radio" name='oldFirst'/>
+						<input className="filter__item" type="radio" name='sortOption'/>
 							<label>
 									Old to new
 							</label>
