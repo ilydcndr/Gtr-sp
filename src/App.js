@@ -25,7 +25,7 @@ const App = () => {
     .then(responsedData => {
       setData(responsedData);
     });
-}, [])
+  }, [])
 
   const totalPrice = () => {
     let total = 0;

@@ -3,8 +3,23 @@ import {
   Row,
   Col
  } from "reactstrap";
+ import { useState, useEffect } from 'react';
 
 const Filters = ({sortData}) => {
+	const [brands, setBrands] = useState(null);
+
+	useEffect(() => {
+
+		let url = `http://localhost:3004/companies`
+	
+			fetch(url)
+			.then(response=>response.json())
+			.then(responsedData => {
+				setBrands(responsedData);
+			});
+
+			console.log(brands);
+	}, [])
 
   return ( 
 		<Row>
@@ -43,20 +58,22 @@ const Filters = ({sortData}) => {
 				</div>
 			</Col>	
 			<Col md={4} xl={12}>
-				<div className="brands filter">
+				{brands.map((item)=>
+					<div className="brands filter">
 						<p className="filter__title">Brands</p>
 						<div className="filter__content search">
 							<input className="search" type="search" placeholder='Search brands'/>
 							<div className="filter__content list">
-								<div key={"item.name"}>
+								<div key={item.name}>
 									<input className="filter__item" type="checkbox"/>
 										<label>
-											{"item.name"}
+											{item.name}
 										</label>
 								</div>
 							</div>
 						</div>
 					</div>
+				)}	
 			</Col>
 			<Col md={4} xl={12}>
 				<div className="tags filter">
@@ -118,7 +135,7 @@ const Filters = ({sortData}) => {
 					</div>
 				</div>
 			</Col>
-			</Row>
+		</Row>
   );
 }
 export {Filters};
