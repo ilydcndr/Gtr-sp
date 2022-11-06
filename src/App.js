@@ -52,6 +52,11 @@ const App = () => {
     setData(updatedData);
   }
 
+  const filterByBrand = (product, index) => {
+    console.log(data,"zzz")
+    data.filter((elem)=> product.name === elem.manufacturer)
+  }
+
   const onAddToCart = (product) => {
     const updatedCart= [...cart]
     const cartItem = cart.find((item) => item.slug === product.slug)
@@ -82,7 +87,7 @@ const App = () => {
       <Header total = {total}/>
       <Row className="content">
         <Col xl={3}>
-          <Filters sortData = {sortData} data={data}/>
+          <Filters sortData = {sortData} data={data} filterByBrand = {filterByBrand}/>
         </Col>
         <Col xl={6}>
           <Products data = {data} onAddToCart = {onAddToCart}/>

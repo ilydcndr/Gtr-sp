@@ -5,7 +5,7 @@ import {
  } from "reactstrap";
  import { useState, useEffect } from 'react';
 
-const Filters = ({sortData, data}) => {
+const Filters = ({sortData, data, filterByBrand}) => {
 	const [brands, setBrands] = useState([]);
 	const [tagList, setTagList] = useState([])
 	const [searchBrand, setSearchBrand] = useState('')
@@ -91,7 +91,7 @@ const Filters = ({sortData, data}) => {
 							<div className="filter__content list">
 								{brands?.map((item)=>
 									<div key={item.name}>
-										<input className="filter__item" type="checkbox" value={item.name}/>
+										<input className="filter__item" type="checkbox" value={item.name} onClick={()=>filterByBrand(item)}/>
 											<label>
 												{item.name}
 											</label>
