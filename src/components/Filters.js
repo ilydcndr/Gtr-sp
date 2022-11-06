@@ -1,100 +1,64 @@
 import React from 'react';
+import {
+  Row,
+  Col
+ } from "reactstrap";
 
-const Filters = ({...props}) => {
-	const { sortData } = props
+const Filters = ({sortData}) => {
 
   return ( 
-		<>
-			<div className="sorting filter">
-				<p className="filter__title">Sorting</p>
-				<div className="filter__content">
-					<div>
-						<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byMin')}/>
-						<label>
-								Price low to high
-						</label>
-					</div>
-
-					<div>
-						<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byMax')}/>
+		<Row>
+			<Col md={4} xl={12}>
+				<div className="sorting filter">
+					<p className="filter__title">Sorting</p>
+					<div className="filter__content">
+						<div>
+							<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byMin')}/>
 							<label>
-									Price high to low
+									Price low to high
 							</label>
-					</div>
-					
-					<div>
-						<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byNew')}/>
-							<label>
-								New to old
-						</label>
-					</div>
+						</div>
 
-					<div>
-						<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byOld')}/>
-							<label>
-									Old to new
+						<div>
+							<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byMax')}/>
+								<label>
+										Price high to low
+								</label>
+						</div>
+						
+						<div>
+							<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byNew')}/>
+								<label>
+									New to old
 							</label>
+						</div>
+
+						<div>
+							<input className="filter__item" type="radio" name='sortOption' onClick={()=>sortData('byOld')}/>
+								<label>
+										Old to new
+								</label>
+						</div>
 					</div>
 				</div>
-			</div>
-				
+			</Col>	
+			<Col md={4} xl={12}>
 				<div className="brands filter">
-					<p className="filter__title">Brands</p>
-					<div className="filter__content search">
-						<input className="search" type="search" placeholder='Search brands'/>
-						<div className="filter__content list">
-							<div>
-								<input className="filter__item" type="checkbox"/>
+						<p className="filter__title">Brands</p>
+						<div className="filter__content search">
+							<input className="search" type="search" placeholder='Search brands'/>
+							<div className="filter__content list">
+								<div key={"item.name"}>
+									<input className="filter__item" type="checkbox"/>
 										<label>
-											Check me out
+											{"item.name"}
 										</label>
+								</div>
 							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-						</div>	
+						</div>
 					</div>
-				</div>
-
+			</Col>
+			<Col md={4} xl={12}>
 				<div className="tags filter">
 					<p className="filter__title">Tags</p>
 					<div className="filter__content search">
@@ -153,7 +117,8 @@ const Filters = ({...props}) => {
 						</div>
 					</div>
 				</div>
-			</>
+			</Col>
+			</Row>
   );
 }
 export {Filters};

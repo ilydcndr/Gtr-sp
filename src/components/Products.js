@@ -30,7 +30,7 @@ const Products = ({ data, onAddToCart }) => {
 				</div>
 				<Row className='products__list'>
 					{productList?.map((item, index) => 
-							<Col key={index} className='products__list-item' xl={3}>
+							<Col key={index} className='products__list-item' md={3} xs={6}>
 									<div className="products__img">
 										<img alt="product-img" src={product}/>
 									</div>

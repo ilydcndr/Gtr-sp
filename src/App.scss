@@ -7,8 +7,11 @@
 
 .content {
   padding-bottom: 50px;
-  margin: 50px auto 0 !important;
   max-width: 1300px;
+
+  @media only screen and (min-width: 1024px) {
+    margin: 50px auto 0 !important;
+  }
 }
 
 .navi__brand {
@@ -19,11 +22,15 @@
 .summary {
   cursor: pointer;
   position: relative;
-  right: 250px;
   height: inherit;
   display: flex;
   background-color: #147594;
   width: 129px;
+  right: 0;
+
+  @media only screen and (min-width: 1024px) {
+    right: 250px;
+  }
 
   & p {
     display: flex;
@@ -163,8 +170,7 @@
 }
 
 .filter {
-  width: 296px;
-  margin-top: 40px;
+  margin-top: 24px !important;
   color: #525252;
   margin-left: auto;
   margin-right: auto;
@@ -183,6 +189,11 @@
   &__content {
     background-color: white;
     padding:20px;
+    height: 238px;
+
+    @media only screen and (min-width: 1024px) {
+      height: auto;
+    }
 
     &.search .search {
       margin: auto;

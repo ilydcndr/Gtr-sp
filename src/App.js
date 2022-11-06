@@ -23,10 +23,9 @@ const App = () => {
     fetch(url)
     .then(response=>response.json())
     .then(responsedData => {
-      setData(responsedData)
+      setData(responsedData);
     });
 }, [])
-
 
   const totalPrice = () => {
     let total = 0;
@@ -65,7 +64,6 @@ const App = () => {
       }
       totalPrice();
   }
-
 
   const onRemoveFromCart = (product) => {
     let updatedCart= [...cart]
