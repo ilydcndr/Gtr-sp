@@ -82,7 +82,7 @@ const App = () => {
       <Header total = {total}/>
       <Row className="content">
         <Col xl={3}>
-          <Filters sortData = {sortData}/>
+          <Filters sortData = {sortData} data={data}/>
         </Col>
         <Col xl={6}>
           <Products data = {data} onAddToCart = {onAddToCart}/>

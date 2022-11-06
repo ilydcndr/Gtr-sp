@@ -5,8 +5,10 @@ import {
  } from "reactstrap";
  import { useState, useEffect } from 'react';
 
-const Filters = ({sortData}) => {
-	const [brands, setBrands] = useState(null);
+const Filters = ({sortData, data}) => {
+	const [brands, setBrands] = useState([]);
+	const [tagList, setTagList] = useState([])
+	const [searchBrand, setSearchBrand] = useState('')
 
 	useEffect(() => {
 
@@ -16,10 +18,34 @@ const Filters = ({sortData}) => {
 			.then(response=>response.json())
 			.then(responsedData => {
 				setBrands(responsedData);
-			});
-
-			console.log(brands);
+			});	
 	}, [])
+
+	/*useEffect(() => {
+			data?.forEach(element => {
+			element.tags.forEach(item => {
+				if(tagList.length === 0) {
+					setTagList([...tagList, item])
+				} else {
+					const newTag = tagList.filter((elem)=> elem !== item)
+					setTagList([...tagList, newTag])
+				}
+			});
+		});
+		console.log(tagList,"list")
+
+	}, [data])*/
+	
+
+	const getBrandToTop = (e) => {
+		setSearchBrand(e.target.value);
+
+		/*if(e.keyCode === 32){
+			const topElement = brands.find((item) => item === searchBrand)
+			ReactDOM.findDOMNode(topElement).scrollTop = 0
+			console.log(topElement);
+	}*/}
+
 
   return ( 
 		<Row>
@@ -58,22 +84,22 @@ const Filters = ({sortData}) => {
 				</div>
 			</Col>	
 			<Col md={4} xl={12}>
-				{brands.map((item)=>
-					<div className="brands filter">
-						<p className="filter__title">Brands</p>
-						<div className="filter__content search">
-							<input className="search" type="search" placeholder='Search brands'/>
+				<div className="brands filter">
+					<p className="filter__title">Brands</p>
+					<div className="filter__content search">
+						<input className="search" type="search" placeholder='Search brands' name='brand' value={searchBrand} onChange={getBrandToTop}/>
 							<div className="filter__content list">
-								<div key={item.name}>
-									<input className="filter__item" type="checkbox"/>
-										<label>
-											{item.name}
-										</label>
-								</div>
+								{brands?.map((item)=>
+									<div key={item.name}>
+										<input className="filter__item" type="checkbox" value={item.name}/>
+											<label>
+												{item.name}
+											</label>
+									</div>
+								)}
 							</div>
-						</div>
 					</div>
-				)}	
+				</div>
 			</Col>
 			<Col md={4} xl={12}>
 				<div className="tags filter">
@@ -81,56 +107,14 @@ const Filters = ({sortData}) => {
 					<div className="filter__content search">
 						<input className="search" type="search" placeholder='Search Tag'/>
 						<div className="filter__content list">
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
-							<div>
-								<input className="filter__item" type="checkbox"/>
-										<label>
-											Check me out
-										</label>
-							</div>
+							{tagList?.map((item, index)=>
+								<div key={index}>
+									<input className="filter__item" type="checkbox" value={item[index]}/>
+											<label>
+												{item[index]}
+											</label>
+								</div>
+							)}
 						</div>
 					</div>
 				</div>

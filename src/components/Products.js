@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import ReactPaginate from "react-paginate";
 import { useState, useEffect } from 'react';
 import {
   Button,
@@ -8,7 +8,10 @@ import {
 } from "reactstrap";
 import product from '../images/product.png';
 
+const PER_PAGE = 16;
+
 const Products = ({ data, onAddToCart }) => {
+	const [currentPage, setCurrentPage] = useState(0);
 	const [productList, setProductList] = useState([]);
 	const [selectedItemType, setSelectedItemType] = useState('mug')
 
@@ -21,6 +24,14 @@ const Products = ({ data, onAddToCart }) => {
 		setSelectedItemType(type)
 	}
 
+	const handlePageClick = ({selected: selectedPage}) => {
+		setCurrentPage(selectedPage)
+		window.scrollTo(0, 0)
+	}
+
+	const offset = currentPage * PER_PAGE;
+	const pageCount = Math.ceil(productList?.length / PER_PAGE);
+
 	return (
 		<div className="products">
 			<div className='products__title'>Products</div>
@@ -29,7 +40,7 @@ const Products = ({ data, onAddToCart }) => {
 				<Button className={selectedItemType !== 'mug' ? 'active' : ''} onClick={()=>onSelectItemType('shirt')}>shirt</Button>
 			</div>
 			<Row className='products__list'>
-				{productList?.map((item, index) => 
+				{productList?.slice(offset,offset + PER_PAGE).map((item, index) => 
 					<Col key={index} className='products__list-item' md={3} xs={6}>
 						<div className="products__img">
 							<img alt="product-img" src={product}/>
@@ -42,13 +53,18 @@ const Products = ({ data, onAddToCart }) => {
 					</Col>
 				)}
 			</Row>
+			<ReactPaginate
+				previousLabel={"Prev"}
+				nextLabel={"Next"}
+				pageCount={pageCount}
+				onPageChange={handlePageClick}
+				containerClassName={"pagination"}
+				previousClassName={"pagination__link"}
+				nextLinkClassName={"pagination__link"}
+				disabledLinkClassName={"pagination__link--disabled"}
+				activeLinkClassName={"pagination__link--active"}
+			/>
 		</div>
 	);
 }
-
-function mapStateToProps(state) {
-  return { productList: state.sortReducer };
-}
-
-export default connect(mapStateToProps)(Products);
 export {Products};
