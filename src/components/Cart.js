@@ -18,7 +18,7 @@ const Cart = ({cart, onAddToCart, onRemoveFromCart, total}) => {
 			</div>
 			)}
 			<div className='cart__total'>
-       {total}
+      	{total}
 			</div>
 		</div>
   );

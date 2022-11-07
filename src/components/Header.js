@@ -18,7 +18,7 @@ const Header = ({total}) => {
 			</a>
 			<div className="summary">
 				<p>
-					<img alt="basket" src={LogoBasket}/>  {total !== null ? `₺ ${total}` : ''}
+					<img alt="basket" src={LogoBasket}/>  {`₺ ${total}`}
 				</p>
 			</div>
 		</div>

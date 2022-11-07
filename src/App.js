@@ -19,7 +19,6 @@ const App = () => {
   const [initialData, setInitialData] = useState([]);
 
   useEffect(() => {
-
   let url = `http://localhost:3004/items`
 
     fetch(url)

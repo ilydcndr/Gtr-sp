@@ -93,9 +93,9 @@ const Filters = ({sortData, tagList, filterByBrand}) => {
 							{tagList?.map((item, index)=>
 								<div key={index}>
 									<input className="filter__item" type="checkbox" value={item}/>
-											<label>
-												{item}
-											</label>
+										<label>
+											{item}
+										</label>
 								</div>
 							)}
 						</div>
