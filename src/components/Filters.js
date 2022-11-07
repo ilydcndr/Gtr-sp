@@ -23,7 +23,7 @@ const Filters = ({sortData, tagList, filterByBrand}) => {
 	const getBrandToTop = (e) => {
 		setSearchBrand(e.target.value);
 
-		/*if(e.keyCode === 32 or e keyCode === 13){
+		/*if(e.keyCode === 32 or e.keyCode === 13){
 			const topElement = brands.find((item) => item === searchBrand)
 			ReactDOM.findDOMNode(topElement).scrollTop = 0
 			console.log(topElement);
@@ -90,9 +90,9 @@ const Filters = ({sortData, tagList, filterByBrand}) => {
 					<div className="filter__content search">
 						<input className="search" type="search" placeholder='Search Tag'/>
 						<div className="filter__content list">
-							{tagList?.map((item,index)=>
+							{tagList?.map((item, index)=>
 								<div key={index}>
-									<input className="filter__item" type="checkbox" value={item[index]}/>
+									<input className="filter__item" type="checkbox" value={item}/>
 											<label>
 												{item}
 											</label>

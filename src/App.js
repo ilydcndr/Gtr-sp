@@ -53,7 +53,7 @@ const App = () => {
     });
     setTotal((total).toFixed(2));
   }, [cart])
-
+  
   const sortData = (param) => {
     const updatedData = [...data]
     if( param === 'byMin' ) {

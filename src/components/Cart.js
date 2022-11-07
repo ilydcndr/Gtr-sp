@@ -1,7 +1,4 @@
 import React from 'react';
-/*import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { decreaseCounter } from "../redux/actions/cartActions";*/
 
 const Cart = ({cart, onAddToCart, onRemoveFromCart, total}) => {
 	
@@ -14,9 +11,9 @@ const Cart = ({cart, onAddToCart, onRemoveFromCart, total}) => {
 						<p>{item.price}</p>
 					</div>
 					<div className='cart__quantity'>
-						<span onClick={() => onRemoveFromCart(item)}>-</span>
-						<span className='cart__quantity-total'>{item.quantity}</span>
-						<span onClick={() => onAddToCart(item)}>+</span>
+						<span onClick={() => onRemoveFromCart(item)} data-testid = 'decreaseButton'>-</span>
+						<span className='cart__quantity-total' data-testid = 'initialQuantity'>{item.quantity}</span>
+						<span onClick={() => onAddToCart(item)} data-testid = 'increaseButton'>+</span>
 					</div>
 			</div>
 			)}

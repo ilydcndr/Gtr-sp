@@ -48,7 +48,7 @@ const Products = ({ data, onAddToCart }) => {
 						<p className="products__price">{item.price}</p>
 						<p className="products__name">{item.name}</p>
 						<Button onClick={()=>onAddToCart(item)}>
-							buton
+							Add
 						</Button>
 					</Col>
 				)}
