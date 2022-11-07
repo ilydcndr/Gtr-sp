@@ -5,42 +5,25 @@ import {
  } from "reactstrap";
  import { useState, useEffect } from 'react';
 
-const Filters = ({sortData, data, filterByBrand}) => {
+const Filters = ({sortData, tagList, filterByBrand}) => {
 	const [brands, setBrands] = useState([]);
-	const [tagList, setTagList] = useState([])
 	const [searchBrand, setSearchBrand] = useState('')
 
 	useEffect(() => {
 
-		let url = `http://localhost:3004/companies`
+		let url = `http://localhost:3000/companies`
 	
 			fetch(url)
 			.then(response=>response.json())
 			.then(responsedData => {
 				setBrands(responsedData);
 			});	
-	}, [])
-
-	/*useEffect(() => {
-			data?.forEach(element => {
-			element.tags.forEach(item => {
-				if(tagList.length === 0) {
-					setTagList([...tagList, item])
-				} else {
-					const newTag = tagList.filter((elem)=> elem !== item)
-					setTagList([...tagList, newTag])
-				}
-			});
-		});
-		console.log(tagList,"list")
-
-	}, [data])*/
-	
+	}, [])	
 
 	const getBrandToTop = (e) => {
 		setSearchBrand(e.target.value);
 
-		/*if(e.keyCode === 32){
+		/*if(e.keyCode === 32 or e keyCode === 13){
 			const topElement = brands.find((item) => item === searchBrand)
 			ReactDOM.findDOMNode(topElement).scrollTop = 0
 			console.log(topElement);
@@ -107,11 +90,11 @@ const Filters = ({sortData, data, filterByBrand}) => {
 					<div className="filter__content search">
 						<input className="search" type="search" placeholder='Search Tag'/>
 						<div className="filter__content list">
-							{tagList?.map((item, index)=>
+							{tagList?.map((item,index)=>
 								<div key={index}>
 									<input className="filter__item" type="checkbox" value={item[index]}/>
 											<label>
-												{item[index]}
+												{item}
 											</label>
 								</div>
 							)}

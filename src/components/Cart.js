@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 /*import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { decreaseCounter } from "../redux/actions/cartActions";*/

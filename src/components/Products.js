@@ -8,7 +8,7 @@ import {
 } from "reactstrap";
 import product from '../images/product.png';
 
-const PER_PAGE = 16;
+ const PER_PAGE = 16;
 
 const Products = ({ data, onAddToCart }) => {
 	const [currentPage, setCurrentPage] = useState(0);
@@ -24,13 +24,13 @@ const Products = ({ data, onAddToCart }) => {
 		setSelectedItemType(type)
 	}
 
-	const handlePageClick = ({selected: selectedPage}) => {
+	 const handlePageClick = ({selected: selectedPage}) => {
 		setCurrentPage(selectedPage)
-		window.scrollTo(0, 0)
-	}
+	 	window.scrollTo(0, 0)
+	 }
 
-	const offset = currentPage * PER_PAGE;
-	const pageCount = Math.ceil(productList?.length / PER_PAGE);
+	 const offset = currentPage * PER_PAGE;
+	 const pageCount = Math.ceil(productList?.length / PER_PAGE);
 
 	return (
 		<div className="products">
@@ -40,7 +40,7 @@ const Products = ({ data, onAddToCart }) => {
 				<Button className={selectedItemType !== 'mug' ? 'active' : ''} onClick={()=>onSelectItemType('shirt')}>shirt</Button>
 			</div>
 			<Row className='products__list'>
-				{productList?.slice(offset,offset + PER_PAGE).map((item, index) => 
+				 {productList?.slice(offset,offset + PER_PAGE).map((item, index) =>
 					<Col key={index} className='products__list-item' md={3} xs={6}>
 						<div className="products__img">
 							<img alt="product-img" src={product}/>

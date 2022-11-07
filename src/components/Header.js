@@ -17,7 +17,6 @@ const Header = ({total}) => {
 				/>
 			</a>
 			<div className="summary">
-				{console.log(total,"total")}
 				<p>
 					<img alt="basket" src={LogoBasket}/>  {total !== null ? `₺ ${total}` : ''}
 				</p>

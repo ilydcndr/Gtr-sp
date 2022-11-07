@@ -14,27 +14,45 @@ import {
 const App = () => {
   const [data, setData] = useState(null);
   const [cart, setCart] = useState([]);
-  const [total, setTotal] = useState(null);
+  const [total, setTotal] = useState(0);
+  const [tagList, setTagList] = useState([]);
+  const [initialData, setInitialData] = useState([]);
 
   useEffect(() => {
 
-  let url = `http://localhost:3004/items`
+  let url = `http://localhost:3000/items`
 
     fetch(url)
     .then(response=>response.json())
     .then(responsedData => {
       setData(responsedData);
     });
+
   }, [])
 
-  const totalPrice = () => {
+  useEffect(() => {
+    let newTags = []
+    data?.forEach(element => {
+     element.tags.forEach(item => {
+       if(!newTags.includes(item)){
+        newTags = [...newTags, item]
+       }
+     });
+    });
+    setTagList(newTags);
+    setInitialData(data);
+  }, [data])  
+
+
+  useEffect(() => {
     let total = 0;
     cart.forEach(item => {
       let quantity = item.quantity;
       let perPrice = item.price;
-      setTotal(total += quantity * perPrice);
+      total += quantity * perPrice;
     });
-  };
+    setTotal((total).toFixed(2));
+  }, [cart])
 
   const sortData = (param) => {
     const updatedData = [...data]
@@ -46,19 +64,19 @@ const App = () => {
     }
     if( param === 'byNew' ) {
       updatedData.sort((a, b) => new Date(a.added) - new Date(b.added));
-    } else {
+    } 
+    if( param === 'byOld') {
       updatedData.sort((a, b) => new Date(b.added) - new Date(a.added));
     }
     setData(updatedData);
   }
 
-  const filterByBrand = (product, index) => {
-    console.log(data,"zzz")
-    data.filter((elem)=> product.name === elem.manufacturer)
+  const filterByBrand = (product) => {
+    setData(initialData.filter((elem)=> product.slug === elem.manufacturer));
   }
 
   const onAddToCart = (product) => {
-    const updatedCart= [...cart]
+    let updatedCart= [...cart]
     const cartItem = cart.find((item) => item.slug === product.slug)
       if(cartItem) {
         const index = cart.findIndex((item) => item.slug === product.slug);
@@ -67,7 +85,6 @@ const App = () => {
       } else {
         setCart([...cart, {...product, quantity:1}])
       }
-      totalPrice();
   }
 
   const onRemoveFromCart = (product) => {
@@ -79,7 +96,6 @@ const App = () => {
       updatedCart = cart.filter((item) => product.slug !== item.slug)
     } 
     setCart(updatedCart);
-    totalPrice();
   }
 
   return (
@@ -87,7 +103,7 @@ const App = () => {
       <Header total = {total}/>
       <Row className="content">
         <Col xl={3}>
-          <Filters sortData = {sortData} data={data} filterByBrand = {filterByBrand}/>
+          <Filters sortData = {sortData} data={data} filterByBrand = {filterByBrand} tagList={tagList}/>
         </Col>
         <Col xl={6}>
           <Products data = {data} onAddToCart = {onAddToCart}/>
