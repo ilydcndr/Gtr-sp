@@ -1,4 +1,4 @@
-/*import { render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import App from '../../App';
 import { Products } from '../Products';
@@ -64,4 +64,4 @@ test('Filters titles have css class',() => {
 
   const tagsTitle = screen.getByText(/tags/i);
   expect(tagsTitle).toHaveClass('filter__title')
-})*/
+})
