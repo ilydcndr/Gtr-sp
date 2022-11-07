@@ -20,7 +20,7 @@ const App = () => {
 
   useEffect(() => {
 
-  let url = `http://localhost:3000/items`
+  let url = `http://localhost:3004/items`
 
     fetch(url)
     .then(response=>response.json())

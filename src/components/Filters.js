@@ -11,7 +11,7 @@ const Filters = ({sortData, tagList, filterByBrand}) => {
 
 	useEffect(() => {
 
-		let url = `http://localhost:3000/companies`
+		let url = `http://localhost:3004/companies`
 	
 			fetch(url)
 			.then(response=>response.json())
